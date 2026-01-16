@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col min-h-screen">
-    <header class="shadow-lg px-8 py-3 h-25 flex justify-between items-center shrink-0">
+    <header class="font-[Audiowide] shadow-lg px-8 py-3 h-25 flex justify-between items-center shrink-0">
       <router-link to="/" class="h-full"
         ><img src="@/assets/images/logo.png" alt="logo" class="h-full"
       /></router-link>
@@ -11,7 +11,7 @@
         @submit.prevent="userRegister"
         class="shadow-xl flex flex-col p-10 gap-5 rounded-3xl justify-center items-center"
       >
-        <h1 class="font-bold text-3xl mb-5">Regístrate</h1>
+        <h1 class="font-bold text-3xl mb-5 font-[Audiowide]">Regístrate</h1>
         <input type="email" v-model="email" placeholder="Correo electrónico" :class="input" />
         <input type="password" v-model="passwd" placeholder="Contraseña" :class="input" />
         <input

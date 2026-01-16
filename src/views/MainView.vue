@@ -1,7 +1,11 @@
 <template>
-  <header class="shadow-lg px-8 py-3 h-25 flex justify-between items-center">
+  <header v-if="!isLogged" class="font-[Audiowide] shadow-lg px-8 py-3 h-25 flex justify-between items-center">
     <img src="@/assets/images/logo.png" alt="logo" class="h-full"/>
     <router-link to="/login" class="font-bold text-xl">Iniciar sesión</router-link>
+  </header>
+  <header v-else class="font-[Audiowide] shadow-lg px-8 py-3 h-25 flex justify-between items-center">
+    <img src="@/assets/images/logo.png" alt="logo" class="h-full"/>
+    <router-link to="/userProfile" class="font-bold text-xl">Favoritos</router-link>
   </header>
   <div class="flex flex-wrap gap-10 p-5 justify-center">
     <character-card
@@ -19,7 +23,10 @@
 <script setup>
 import CharacterCard from '@/components/CharacterCard.vue'
 import { getData } from '@/scripts/getChar'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
+import { getUser } from '@/services/authentication'
+
+const isLogged = computed(() => getUser())
 
 const charList = ref([])
 

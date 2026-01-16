@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { userAuthenticated } from '@/services/authentication'
+import { userAuthenticated, isAuthReady } from '@/services/authentication'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,8 +15,12 @@ const router = createRouter({
   ],
 })
 
-router.beforeEach((to, from, next) => {
-  if (to.meta.authRequired && !userAuthenticated) {
+router.beforeEach(async (to, from, next) => {
+  while (!isAuthReady()){
+    await new Promise(res => setTimeout(res, 10))
+  }
+  
+  if (to.meta.authRequired && !userAuthenticated()) {
     next('/login')
   } else {
     next()

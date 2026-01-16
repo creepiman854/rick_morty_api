@@ -8,9 +8,13 @@ import {
 import { ref } from 'vue'
 
 const user = ref(null)
+const authReady = ref(false)
 
 onAuthStateChanged(auth, (userFirebase) => {
+  console.log(`User detected: ${userFirebase?.email || "none"}`);
+
   user.value = userFirebase
+  authReady.value = true
 })
 
 export const register = async (email, password) => {
@@ -72,6 +76,7 @@ export const logout = async() => {
   }
 }
 
-export const userAuthenticated = () => user.value !== null
 
 export const getUser = () => user.value
+export const userAuthenticated = () => user.value !== null
+export const isAuthReady = () => authReady.value
