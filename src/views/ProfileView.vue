@@ -26,6 +26,8 @@
             :name="char.name"
             :status="char.status"
             :gender="char.gender"
+            mode="remove"
+            :onRemove="removeFromFavList"
             class="shadow-xl p-5 rounded-3xl flex flex-col gap-2"
           ></character-card>
         </div>
@@ -60,9 +62,14 @@ const userLogout = async () => {
   }
 }
 
+const removeFromFavList = (charName) => {
+  favList.value = favList.value.filter((c) => c.name !== charName)
+}
+
 onMounted(async () => {
   if (user.value) {
     const res = await getFavoritesByUser(user.value.uid)
+
     if (res.ok) {
       favList.value = res.favorites
     }

@@ -1,6 +1,8 @@
 <template>
   <div class="flex flex-col min-h-screen">
-    <header class="font-[Audiowide] shadow-lg px-8 py-3 h-25 flex justify-between items-center shrink-0">
+    <header
+      class="font-[Audiowide] shadow-lg px-8 py-3 h-25 flex justify-between items-center shrink-0"
+    >
       <router-link to="/" class="h-full"
         ><img src="@/assets/images/logo.png" alt="logo" class="h-full"
       /></router-link>

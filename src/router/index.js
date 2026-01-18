@@ -16,10 +16,10 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  while (!isAuthReady()){
-    await new Promise(res => setTimeout(res, 10))
+  while (!isAuthReady()) {
+    await new Promise((res) => setTimeout(res, 10))
   }
-  
+
   if (to.meta.authRequired && !userAuthenticated()) {
     next('/login')
   } else {
